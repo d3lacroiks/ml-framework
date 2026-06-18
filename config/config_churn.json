@@ -1,0 +1,24 @@
+{
+  "dataset": "data/telco_churn.csv",
+  "target": "Churn",
+  "target_mapping": {"Yes": 1, "No": 0},
+  "id_column": "customerID",
+  "drop_columns": ["customerID"],
+  "categorical_columns": ["gender", "Partner", "Dependents", "PhoneService", "MultipleLines",
+                          "InternetService", "OnlineSecurity", "OnlineBackup", "DeviceProtection",
+                          "TechSupport", "StreamingTV", "StreamingMovies", "Contract",
+                          "PaperlessBilling", "PaymentMethod"],
+  "numeric_columns": ["tenure", "MonthlyCharges", "TotalCharges"],
+  "engineered_features": {
+    "AvgMonthlyCharges": "TotalCharges / (tenure + 1)",
+    "ChargesToMonthlyRatio": "TotalCharges / (MonthlyCharges + 1)",
+    "Tenure_x_Monthly": "tenure * MonthlyCharges",
+    "IsNewCustomer": "(tenure <= 12).astype(int)",
+    "NumExtraServices": "OnlineSecurity_Yes + OnlineBackup_Yes + DeviceProtection_Yes + TechSupport_Yes + StreamingTV_Yes + StreamingMovies_Yes"
+  },
+  "model_params": {
+    "n_estimators": 300,
+    "learning_rate": 0.03,
+    "random_state": 42
+  }
+}

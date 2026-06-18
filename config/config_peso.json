@@ -1,0 +1,20 @@
+{
+  "dataset": "data/pacientes.csv",
+  "target": "perdida_10pct",
+  "target_mapping": null,
+  "id_column": "id_paciente",
+  "drop_columns": ["id_paciente", "peso_final_kg", "perdida_kg", "dias_seguimiento"],
+  "categorical_columns": ["sexo"],
+  "numeric_columns": ["edad", "peso_inicial_kg", "altura_cm", "horas_ejercicio_semana", "calorias_diarias"],
+  "engineered_features": {
+    "IMC_inicial": "peso_inicial_kg / ((altura_cm/100) ** 2)",
+    "deficit_calorico": "2000 - calorias_diarias",
+    "ejercicio_ratio": "horas_ejercicio_semana / 7",
+    "peso_por_cm": "peso_inicial_kg / altura_cm"
+  },
+  "model_params": {
+    "n_estimators": 300,
+    "learning_rate": 0.03,
+    "random_state": 42
+  }
+}
