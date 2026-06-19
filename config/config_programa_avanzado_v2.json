@@ -1,0 +1,22 @@
+{
+  "dataset": "data/programa_avanzado_v2.csv",
+  "target": "exito_10pct",
+  "target_mapping": null,
+  "id_column": "id_paciente",
+  "drop_columns": ["id_paciente", "peso_final_kg", "perdida_kg", "dias_adherencia", "abandono"],
+  "categorical_columns": ["sexo", "tipo_dieta", "espacio"],
+  "numeric_columns": ["edad", "peso_inicial_kg", "altura_cm", "actividad_fisica_semanal",
+                      "horas_cardio_semana", "horas_fuerza_semana", "horas_hiit_semana",
+                      "tiene_pesas", "tiene_bandas",
+                      "calorias_diarias", "horas_sueno", "autoestima_inicial", "estres_inicial"],
+  "engineered_features": {
+    "IMC_inicial": "peso_inicial_kg / ((altura_cm/100) ** 2)",
+    "total_ejercicio": "horas_cardio_semana + horas_fuerza_semana + horas_hiit_semana",
+    "ratio_cardio_fuerza": "horas_cardio_semana / (horas_fuerza_semana + 1)"
+  },
+  "model_params": {
+    "n_estimators": 300,
+    "learning_rate": 0.03,
+    "random_state": 42
+  }
+}
